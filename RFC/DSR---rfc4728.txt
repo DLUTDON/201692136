@@ -578,6 +578,8 @@ RFC 4728          The Dynamic Source Routing Protocol      February 2007
    D each also, in turn, broadcast the Request, resulting in receipt of
    a copy of the Request by node E.
 
+
+// by 12.6 22：00
    In returning the Route Reply to the initiator of the Route Discovery,
    such as in this example, node E replying back to node A, node E will
    typically examine its own Route Cache for a route back to A and, if
