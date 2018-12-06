@@ -601,7 +601,9 @@ RFC 4728          The Dynamic Source Routing Protocol      February 2007
    discovered route to ensure that it is bidirectional before the Route
    Discovery initiator begins using the route.  This route reversal also
    avoids the overhead of a possible second Route Discovery.
-
+//12.7 7：00
+被发现的E节点，可以反转传回源点，对于双向的协议，如MAC，在使用路由前，被发现的结点E必须这样回复路由回复，
+确保是双向的以及避免过多开销，
    When initiating a Route Discovery, the sending node saves a copy of
    the original packet (that triggered the discovery) in a local buffer
    called the "Send Buffer".  The Send Buffer contains a copy of each
@@ -613,8 +615,8 @@ RFC 4728          The Dynamic Source Routing Protocol      February 2007
    for preventing the Send Buffer from overflowing, a FIFO or other
    replacement strategy MAY also be used to evict packets even before
    they expire.
-
-
+//启动路由发现时，发送方保存原始数据包在本地“发送缓存”中，缓存包括每个无法被这个结点传输的数据包，
+因为它还没有到目的的源路由。数据包与放入缓存的时间相关，保存一段超时时间后被丢弃，防止缓存溢出，，可用FIFO或其他
 
 
 Johnson, et al.               Experimental                     [Page 11]
