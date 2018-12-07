@@ -636,6 +636,8 @@ RFC 4728          The Dynamic Source Routing Protocol      February 2007
    be forwarded to reach the destination.  Depending on the movement
    pattern and the density of nodes in the network, such network
    partitions may be rare or common.
+//节点不定期的为缓存中的packet启动路由发现，但是需限制相同的地址，
+网络经常会变化，节点移动，传输范围的因素，会被分区，
 
    If a new Route Discovery was initiated for each packet sent by a node
    in such a partitioned network, a large number of unproductive Route
@@ -655,6 +657,9 @@ RFC 4728          The Dynamic Source Routing Protocol      February 2007
    target is similar to the mechanism required by Internet nodes to
    limit the rate at which ARP Requests are sent for any single target
    IP address [RFC1122].
+//节点应该使用指数退避算法来限制它为同一目标发起新路由发现的速率，
+将为同一目标发起的每个连续发现之间的超时加倍，若节点向相同目标频繁的发送，后续packet要缓存起来，直到收到回复
+不得在最小允许间隔前启动新的发现
 
 3.2.  Basic DSR Route Maintenance
 
@@ -695,20 +700,20 @@ RFC 4728          The Dynamic Source Routing Protocol      February 2007
    directly to the sending node, but if the link between these two nodes
    is unidirectional (Section 4.6), this software acknowledgement could
    travel over a different, multi-hop path.
-
+//要是内置确认机制不可用，可显示要求特定的DSR软件确认，该ACK直接发送到发送节点，若不是双向的，会走不同路线
    After an acknowledgement has been received from some neighbor, a node
    MAY choose not to require acknowledgements from that neighbor for a
    brief period of time, unless the network interface connecting a node
    to that neighbor always receives an acknowledgement in response to
    unicast traffic.
-
+//不麻烦近邻
    When a software acknowledgement is used, the acknowledgement request
    SHOULD be retransmitted up to a maximum number of times.  A
    retransmission of the acknowledgement request can be sent as a
    separate packet, piggybacked on a retransmission of the original data
    packet, or piggybacked on any packet with the same next-hop
    destination that does not also contain a software acknowledgement.
-
+//确认请求重传次数有最大值，ack请求可单独作为packet传送，捎带原始数据包，或任何具有吓一跳地址的包
    After the acknowledgement request has been retransmitted the maximum
    number of times, if no acknowledgement has been received, then the
    sender treats the link to this next-hop destination as currently
@@ -727,7 +732,7 @@ RFC 4728          The Dynamic Source Routing Protocol      February 2007
    Route Replies from its earlier Route Discovery, or from having
    overheard sufficient routing information from other packets), it can
 
-
+//出错节点处理，所有有C-D的连接的结点移除该链接，可用新的路由到达目标节点，或启用新的路由发现
 
 
 
