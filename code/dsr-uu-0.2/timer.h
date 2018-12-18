@@ -115,7 +115,7 @@ static inline char *print_timeval(struct timeval *tv)
 	static char buf[56][56];
 	static int n = 0;
 
-	n = (n + 1) % 2;
+	n = (n + 1) % 2;  		//n只等于1 or 2  ????
 
 	snprintf(buf[n], sizeof(buf), "%ld:%02ld:%03lu", tv->tv_sec / 60,
 		 tv->tv_sec % 60, tv->tv_usec / 1000);
