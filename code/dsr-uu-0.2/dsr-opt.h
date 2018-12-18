@@ -30,7 +30,7 @@ struct dsr_opt_hdr {
 
 	u_int8_t res:7;
 	u_int8_t f:1;
-#elif defined (__BIG_ENDIAN_BITFIELD)
+#elif defined (__BIG_ENDIAN_BITFIELD)  //？
 	u_int8_t f:1;
 	u_int8_t res:7;
 #else
