@@ -72,7 +72,7 @@ static inline int list_detach(list_t * le)
 
 	return LIST_SUCCESS;
 }
-
+//遍历链表
 #define list_for_each(curr, head) \
         for (curr = (head)->next; curr != (head); curr = curr->next)
 
