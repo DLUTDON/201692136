@@ -37,9 +37,10 @@ extern atomic_t num_pkts;
 #endif
 
 #ifndef NO_GLOBALS
-
+//定义debug缓存长度 256
 #define DEBUG_BUFLEN 256
 
+//打印ip 地址，移位
 static inline char *print_ip(struct in_addr addr)
 {
 	static char buf[16 * 4];
@@ -57,7 +58,7 @@ static inline char *print_ip(struct in_addr addr)
 
 	return str;
 }
-
+//打印以太网地址
 static inline char *print_eth(char *addr)
 {
 	static char buf[30];
@@ -69,7 +70,7 @@ static inline char *print_eth(char *addr)
 
 	return buf;
 }
-
+//打印packet，
 static inline char *print_pkt(char *p, int len)
 {
 	static char buf[3000];
@@ -90,8 +91,8 @@ int trace(const char *func, const char *fmt, ...);
 #endif				/* NO_DECLS */
 
 #ifdef __KERNEL__
-int __init dbg_init(void);
-void __exit dbg_cleanup(void);
+int __init dbg_init(void);//初始化
+void __exit dbg_cleanup(void);//退出，清除
 #endif
 
 #endif				/* _DEBUG_H */
