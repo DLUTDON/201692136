@@ -25,8 +25,8 @@ struct dsr_ack_opt {
 	u_int32_t src;
 	u_int32_t dst;
 };
-#define DSR_ACK_REQ_HDR_LEN sizeof(struct dsr_ack_req_opt)
-#define DSR_ACK_REQ_OPT_LEN (DSR_ACK_REQ_HDR_LEN - 2)
+#define DSR_ACK_REQ_HDR_LEN sizeof(struct dsr_ack_req_opt)//ack_req头部长度为ack_req_opt大小
+#define DSR_ACK_REQ_OPT_LEN (DSR_ACK_REQ_HDR_LEN - 2)	//Option长度为首部长度-2，option包括在首部之中？
 #define DSR_ACK_HDR_LEN sizeof(struct dsr_ack_opt)
 #define DSR_ACK_OPT_LEN (DSR_ACK_HDR_LEN - 2)
 
